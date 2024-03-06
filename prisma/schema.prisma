@@ -22,10 +22,10 @@ model Product {
   main_img String
   gallery String
   capacity Int?
-  height Decimal?
-  width Decimal?
-  length Decimal?
-  diameter Decimal?
+  height Int?
+  width Int?
+  length Int?
+  diameter Int?
 
   orders Order[]
 }

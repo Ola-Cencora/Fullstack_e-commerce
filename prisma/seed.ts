@@ -19,8 +19,8 @@ function getProducts() {
       gallery:
         'kubek-plamki-multi-2.jpg,kubek-plamki-multi-3.jpg,kubek-plamki-multi-4.jpg',
       capacity: 300,
-      height: 7.5,
-      diameter: 8.5,
+      height: 8,
+      diameter: 9,
     },
     {
       id: 'c920c7b9-a67d-4edb-8ce7-e3c9f3889e56',
@@ -37,8 +37,8 @@ function getProducts() {
       gallery:
         'kubek-rozowo-szalwiowy-2.jpg,kubek-rozowo-szalwiowy-3.jpg,kubek-rozowo-szalwiowy-4.jpg',
       capacity: 300,
-      height: 7.5,
-      diameter: 8.5,
+      height: 8,
+      diameter: 9,
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17258',
@@ -108,7 +108,7 @@ function getProducts() {
       category: 'bowls',
       main_img: 'misa-paski-1.jpg',
       gallery: 'misa-paski-2.jpg,misa-paski-3.jpg,misa-paski-4.jpg',
-      height: 5.5,
+      height: 6,
       length: 22,
       width: 16,
     },
