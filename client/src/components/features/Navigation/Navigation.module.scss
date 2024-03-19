@@ -14,12 +14,6 @@
     transition: 1s;
     transform: translateY(-100vh);
 
-    @media (min-width: 62rem) {
-        position: static;
-        transform: none;
-        background-color: transparent;
-    }
-
     &___responsive {
         @extend .navigation;
         transform: none;
@@ -37,10 +31,6 @@
         transition: $transition-color;
         &:hover {
             color: $color-primary;
-        }
-
-        @media (min-width: 62rem) {
-            display: none;
         }
 
         &___hide {
@@ -62,21 +52,33 @@
         gap: 20px;
         padding: 0;
 
-        @media (min-width: 62rem) {
-            flex-direction: row;
-        }
-
         &__link {
             transition: $transition-color;
             &:hover {
                 color: $color-primary;
             }
+
             &___active {
                 @extend .navigation__linkList__link;
                 color: $color-primary;
             }
-        }
-    
+        }    
     }
+}
 
+@media (min-width: 62rem) {
+
+    .navigation {
+        position: static;
+        transform: none;
+        background-color: transparent;
+
+        &__btn {
+            display: none;    
+        }
+
+        &__linkList {
+            flex-direction: row;
+        }
+    }
 }
