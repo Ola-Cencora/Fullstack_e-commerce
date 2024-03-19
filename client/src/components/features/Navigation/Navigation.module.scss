@@ -67,7 +67,6 @@
         }
 
         &__link {
-            text-transform: uppercase;
             transition: $transition-color;
             &:hover {
                 color: $color-primary;
