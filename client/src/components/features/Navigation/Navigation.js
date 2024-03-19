@@ -2,9 +2,12 @@ import styles from './Navigation.module.scss';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
+import { getAllCategories } from '../../../redux/productsRedux';
+import { useSelector } from 'react-redux';
 
 const Navigation = () => {
   const [isNavShown, setIsNavShown] = useState(false);
+  const categories = useSelector(getAllCategories);
 
   return (
     <>
@@ -33,36 +36,19 @@ const Navigation = () => {
           >
             wszystkie produkty
           </NavLink>
-          <NavLink
-            to="/category/mugs"
-            className={({ isActive }) =>
-              isActive
-                ? styles.navigation__linkList__link___active
-                : styles.navigation__linkList__link
-            }
-          >
-            kubki
-          </NavLink>
-          <NavLink
-            to="/category/bowls"
-            className={({ isActive }) =>
-              isActive
-                ? styles.navigation__linkList__link___active
-                : styles.navigation__linkList__link
-            }
-          >
-            miski
-          </NavLink>
-          <NavLink
-            to="/category/vases"
-            className={({ isActive }) =>
-              isActive
-                ? styles.navigation__linkList__link___active
-                : styles.navigation__linkList__link
-            }
-          >
-            wazony
-          </NavLink>
+          {categories.map(({ name, text }) => (
+            <NavLink
+              key={name}
+              to={`/category/${name}`}
+              className={({ isActive }) =>
+                isActive
+                  ? styles.navigation__linkList__link___active
+                  : styles.navigation__linkList__link
+              }
+            >
+              {text}
+            </NavLink>
+          ))}
           <NavLink
             to="/about"
             className={({ isActive }) =>
