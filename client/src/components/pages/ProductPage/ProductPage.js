@@ -8,6 +8,7 @@ import NotFound from '../../views/NotFound/NotFound';
 import Button from '../../common/Button/Button';
 import Counter from '../../common/Counter/Counter';
 import Gallery from '../../features/Gallery/Gallery';
+import SideCartSummary from '../../features/SideCartSummary/SideCartSummary';
 import { getRequests } from '../../../redux/productsRedux';
 import { BsBagHeartFill } from 'react-icons/bs';
 import { getAllCartProducts } from '../../../redux/cartRedux';
@@ -23,6 +24,7 @@ const ProductPage = () => {
   const [product, setProduct] = useState(null);
   const [productExists, setProductExists] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [sideCartSummary, setSideCartSummary] = useState(false);
 
   const products = useSelector(getAllCartProducts);
 
@@ -70,6 +72,10 @@ const ProductPage = () => {
     e.preventDefault();
     const { id, name, main_img, price } = product;
     addToCartFunction(id, name, main_img, price, amount, products, dispatch);
+    setSideCartSummary(true);
+    setTimeout(() => {
+      setSideCartSummary(false);
+    }, 2500);
   };
 
   return (
@@ -115,6 +121,7 @@ const ProductPage = () => {
           </div>
         </section>
       )}
+      {sideCartSummary && <SideCartSummary />}
     </>
   );
 };
