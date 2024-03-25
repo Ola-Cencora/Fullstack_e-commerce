@@ -1,6 +1,7 @@
 @import '../../../styles/settings.scss';
 
 .counter {
+    display: flex;
 
     &__input {
         width: 40px;
