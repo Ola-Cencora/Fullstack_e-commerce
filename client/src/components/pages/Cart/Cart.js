@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -102,7 +103,9 @@ const Cart = () => {
         </div>
       ))}
       {cartProducts.length > 0 ? (
-        <Button content="podsumowanie zamówienia" />
+        <Link to="/order">
+          <Button content="podsumowanie zamówienia" />
+        </Link>
       ) : (
         <>
           <p>Koszyk jest pusty</p>
