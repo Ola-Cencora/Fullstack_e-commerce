@@ -37,8 +37,7 @@ model Order {
   user_email String
   user_address String
   comment String?
-  products Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
-  productId String?
+  products Product[]
   delivery String
   price_products Int
   price_total Int
