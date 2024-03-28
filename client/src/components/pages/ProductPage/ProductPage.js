@@ -1,5 +1,5 @@
 import styles from './ProductPage.module.scss';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { API_URL } from '../../../config';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,9 +13,12 @@ import { getRequests } from '../../../redux/productsRedux';
 import { BsBagHeartFill } from 'react-icons/bs';
 import { getAllCartProducts } from '../../../redux/cartRedux';
 import { addToCartFunction } from '../../../utils/addToCartFunction';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 
 const ProductPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { id } = useParams();
 
   const requests = useSelector(getRequests);
@@ -85,41 +88,54 @@ const ProductPage = () => {
         <p>O nie, coś poszło nie tak :( Spróbuj później</p>
       )}
       {request && request.success && (
-        <section className={styles.product}>
-          <div className={styles.product__gallery}>
-            <Gallery
-              defaultImg={product.main_img}
-              imgs={product.gallery}
-              alt={product.name}
-            />
-          </div>
-          <div className={styles.product__description}>
-            <h1 className={styles.product__description___name}>
-              {product.name}
-            </h1>
-            <span className={styles.product__description___price}>
-              {product.price} zł
-            </span>
-            <div className={styles.product__description___cartAdd}>
-              <Counter countProduct={setAmout} />
-              <Button content={<BsBagHeartFill />} onClick={handleAddToCart} />
+        <>
+          <Button
+            content={<IoMdArrowRoundBack />}
+            onClick={() => navigate(-1)}
+          />
+          <section className={styles.product}>
+            <div className={styles.product__gallery}>
+              <Gallery
+                defaultImg={product.main_img}
+                imgs={product.gallery}
+                alt={product.name}
+              />
             </div>
-            <div>
-              <h2>{product.description_title}</h2>
-              <p>{product.description_first_paragraph}</p>
-              <h3>{product.description_subtitle}</h3>
-              <p>{product.description_second_paragraph}</p>
+            <div className={styles.product__description}>
+              <h1 className={styles.product__description___name}>
+                {product.name}
+              </h1>
+              <span className={styles.product__description___price}>
+                {product.price} zł
+              </span>
+              <div className={styles.product__description___cartAdd}>
+                <Counter countProduct={setAmout} />
+                <Button
+                  content={<BsBagHeartFill />}
+                  onClick={handleAddToCart}
+                />
+              </div>
+              <div>
+                <h2>{product.description_title}</h2>
+                <p>{product.description_first_paragraph}</p>
+                <h3>{product.description_subtitle}</h3>
+                <p>{product.description_second_paragraph}</p>
+              </div>
+              <div className={styles.product__description___details}>
+                <p>WYMIARY:</p>
+                {product.capacity ? (
+                  <p>pojemność: {product.capacity} ml</p>
+                ) : (
+                  ''
+                )}
+                {product.height ? <p>wysokość: {product.height} cm</p> : ''}
+                {product.diameter ? <p>średnica: {product.diameter} cm</p> : ''}
+                {product.length ? <p>długość: {product.length} cm</p> : ''}
+                {product.width ? <p>szerokość: {product.width} cm</p> : ''}
+              </div>
             </div>
-            <div className={styles.product__description___details}>
-              <p>WYMIARY:</p>
-              {product.capacity ? <p>pojemność: {product.capacity} ml</p> : ''}
-              {product.height ? <p>wysokość: {product.height} cm</p> : ''}
-              {product.diameter ? <p>średnica: {product.diameter} cm</p> : ''}
-              {product.length ? <p>długość: {product.length} cm</p> : ''}
-              {product.width ? <p>szerokość: {product.width} cm</p> : ''}
-            </div>
-          </div>
-        </section>
+          </section>
+        </>
       )}
       {sideCartSummary && <SideCartSummary />}
     </>
